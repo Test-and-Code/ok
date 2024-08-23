@@ -6,22 +6,15 @@ requires = [
 ]
 
 [project]
-name = "pytest"
-description = "pytest: simple powerful testing with Python"
-readme = "README.rst"
-keywords = [
-    "test",
-    "unittest",
-]
+name = "ok"
+version = '0.832.0'
+description = "ok: an ok fork of pytest"
+readme = "README.md"
+keywords = [ "test", ]
 license = { text = "MIT" }
 authors = [
-    { name = "Holger Krekel" },
-    { name = "Bruno Oliveira" },
-    { name = "Ronny Pfannschmidt" },
-    { name = "Floris Bruynooghe" },
-    { name = "Brianna Laugher" },
-    { name = "Florian Bruhin" },
-    { name = "Others (See AUTHORS)" },
+    { name = "Brian Okken" },
+    { name = "pytest contributors (See AUTHORS)" },
 ]
 requires-python = ">=3.8"
 classifiers = [
@@ -42,9 +35,6 @@ classifiers = [
     "Topic :: Software Development :: Testing",
     "Topic :: Utilities",
 ]
-dynamic = [
-    "version",
-]
 dependencies = [
     "colorama; sys_platform=='win32'",
     "exceptiongroup>=1.0.0rc8; python_version<'3.11'",
@@ -63,13 +53,14 @@ optional-dependencies.dev = [
     "setuptools",
     "xmlschema",
 ]
-urls.Changelog = "https://docs.pytest.org/en/stable/changelog.html"
-urls.Homepage = "https://docs.pytest.org/en/latest/"
-urls.Source = "https://github.com/pytest-dev/pytest"
-urls.Tracker = "https://github.com/pytest-dev/pytest/issues"
-urls.Twitter = "https://twitter.com/pytestdotorg"
-scripts."py.test" = "pytest:console_main"
+# urls.Changelog = "https://docs.pytest.org/en/stable/changelog.html"
+# urls.Homepage = "https://docs.pytest.org/en/latest/"
+# urls.Source = "https://github.com/pytest-dev/pytest"
+# urls.Tracker = "https://github.com/pytest-dev/pytest/issues"
+# urls.Twitter = "https://twitter.com/pytestdotorg"
+# scripts."py.test" = "pytest:console_main"
 scripts.pytest = "pytest:console_main"
+scripts.ok = "pytest:console_main"
 
 [tool.setuptools.package-data]
 "_pytest" = [
@@ -79,8 +70,8 @@ scripts.pytest = "pytest:console_main"
     "py.typed",
 ]
 
-[tool.setuptools_scm]
-write_to = "src/_pytest/_version.py"
+# [tool.setuptools_scm]
+# write_to = "src/_pytest/_version.py"
 
 [tool.black]
 target-version = [
@@ -315,7 +306,6 @@ ignore = "W009"
 indent = 4
 
 [tool.pytest.ini_options]
-minversion = "2.0"
 addopts = "-rfEX -p pytester --strict-markers"
 python_files = [
     "test_*.py",

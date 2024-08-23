@@ -122,24 +122,24 @@ class TestParseIni:
             textwrap.dedent(
                 f"""
             [{section}]
-            minversion = 3.36
+            minversion = 0.0.1
         """
             ),
             encoding="utf-8",
         )
         config = pytester.parseconfig()
-        assert config.getini("minversion") == "3.36"
+        assert config.getini("minversion") == "0.0.1"
 
     def test_pyproject_toml(self, pytester: Pytester) -> None:
         pyproject_toml = pytester.makepyprojecttoml(
             """
             [tool.pytest.ini_options]
-            minversion = "1.0"
+            minversion = "0.0.2"
         """
         )
         config = pytester.parseconfig()
         assert config.inipath == pyproject_toml
-        assert config.getini("minversion") == "1.0"
+        assert config.getini("minversion") == "0.0.2"
 
     def test_empty_pyproject_toml(self, pytester: Pytester) -> None:
         """An empty pyproject.toml is considered as config if no other option is found."""
@@ -176,7 +176,7 @@ class TestParseIni:
             textwrap.dedent(
                 """
             [pytest]
-            minversion = 2.0
+            minversion = 0.0.3
         """
             ),
             encoding="utf-8",
@@ -185,13 +185,13 @@ class TestParseIni:
             textwrap.dedent(
                 """
             [pytest]
-            minversion = 1.5
+            minversion = 0.0.4
         """
             ),
             encoding="utf-8",
         )
         config = pytester.parseconfigure(sub)
-        assert config.getini("minversion") == "2.0"
+        assert config.getini("minversion") == "0.0.3"
 
     def test_ini_parse_error(self, pytester: Pytester) -> None:
         pytester.path.joinpath("pytest.ini").write_text(
@@ -263,7 +263,7 @@ class TestParseIni:
                 """
                 [pytest]
                 unknown_ini = value1
-                minversion = 5.0.0
+                minversion = 0.0.5
                 """,
                 ["unknown_ini"],
                 [
@@ -278,7 +278,7 @@ class TestParseIni:
                 [some_other_header]
                 unknown_ini = value1
                 [pytest]
-                minversion = 5.0.0
+                minversion = 0.0.5
                 """,
                 [],
                 [],
@@ -288,7 +288,7 @@ class TestParseIni:
             pytest.param(
                 """
                 [pytest]
-                minversion = 5.0.0
+                minversion = 0.0.5
                 """,
                 [],
                 [],
